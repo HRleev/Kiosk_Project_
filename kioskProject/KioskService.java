@@ -12,9 +12,11 @@ public class KioskService {
 	String result1 = null;
 
 	public void order() {
+		
 		kr.order();
 		
 	}
+	
 
 
 }

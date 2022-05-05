@@ -9,6 +9,9 @@ public class KioskRepository {
 	List<DetailDTO> odList = new ArrayList<>();
 	String result = null;
 	String result1 = null;
+	Long beveregePrice = 0L;
+	Long beveregePrice1 = 0L;
+	Long Price =0L;
 	static Long id = 0L;
 
 	public void save() {
@@ -29,7 +32,6 @@ public class KioskRepository {
 
 	}
 
-
 	public void order() {
 		System.out.println("주문하실 음료를 선택 해 주세요");
 		System.out.println("----------------------------------------------------------------");
@@ -40,36 +42,42 @@ public class KioskRepository {
 		if (selectNumber == 1L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result+result1+"을 선택 했습니다.");
+			System.out.println(result + result1 + "을 선택 했습니다.");
 			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
 			odList.add(detailList);
+			totalPrice();
 		} else if (selectNumber == 2L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result+result1+"을 선택 했습니다.");
+			System.out.println(result + result1 + "을 선택 했습니다.");
 			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
 			odList.add(detailList);
+			totalPrice();
 		} else if (selectNumber == 3L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result+result1+"을 선택 했습니다.");
+			System.out.println(result + result1 + "을 선택 했습니다.");
 			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
 			odList.add(detailList);
+			totalPrice();
 		} else if (selectNumber == 4L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result+result1+"을 선택 했습니다.");
+			System.out.println(result + result1 + "을 선택 했습니다.");
 			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
 			odList.add(detailList);
-		} else if (selectNumber == 5) {
+			totalPrice();
+		} else if (selectNumber == 5L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result+result1+"을 선택 했습니다.");
+			System.out.println(result + result1 + "을 선택 했습니다.");
 			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
 			odList.add(detailList);
+			totalPrice();
 		}
 
 	}
+
 	public void selectBeverege() {
 		save();
 		for (int i = 0; i < beveregeList.size(); i++)
@@ -80,31 +88,68 @@ public class KioskRepository {
 	}
 
 	public void sideMenu() {
-				System.out.println("샷추가를 선택 해 주세요");
-				System.out.println("-------------------------------");
-				System.out.println("6.1샷추가 | 7.2샷추가 |8.샷추가 없음 ");
-				System.out.println("-------------------------------");
-				System.out.print("선택>");
-				selectNumber = scan.nextLong();
-				if (selectNumber == 6L) {
-					for (int j = 0; j < beveregeList.size(); j++) {
-						if (selectNumber.equals(beveregeList.get(j).getId())) {
-							result1 = beveregeList.get(j).getMenu();
-							System.out.println(result1+"샷 추가를 선택 했습니다");
-						}
-					}
+		System.out.println("샷추가를 선택 해 주세요");
+		System.out.println("-------------------------------");
+		System.out.println("6.1샷추가 | 7.2샷추가 |8.샷추가 없음 ");
+		System.out.println("-------------------------------");
+		System.out.print("선택>");
+		selectNumber = scan.nextLong();
+		if (selectNumber == 6L) {
+			for (int j = 0; j < beveregeList.size(); j++) {
+				if (selectNumber.equals(beveregeList.get(j).getId())) {
+					result1 = beveregeList.get(j).getMenu();
+					System.out.println(result1 + "샷 추가를 선택 했습니다");
 				}
-			else if (selectNumber == 7L) {
-				for (int j = 0; j < beveregeList.size(); j++) {
-					if (selectNumber.equals(beveregeList.get(j).getId())) {
-						result1 = beveregeList.get(j).getMenu();
-						System.out.println(result1+"샷 추가를 선택 했습니다");
-					}
-				}
-			} else if (selectNumber == 8L) {
-				System.out.println("샷추가 없음");
 			}
+		} else if (selectNumber == 7L) {
+			for (int j = 0; j < beveregeList.size(); j++) {
+				if (selectNumber.equals(beveregeList.get(j).getId())) {
+					result1 = beveregeList.get(j).getMenu();
+					System.out.println(result1 + "샷 추가를 선택 했습니다");
+				}
+			}
+		} else if (selectNumber == 8L) {
+			System.out.println("샷추가 없음");
 		}
 	}
+
+	public void totalPrice() {
+		for (int i = 0; i < beveregeList.size(); i++) {
+			if (result.equals(beveregeList.get(i).getMenu())) {
+				beveregePrice = beveregeList.get(i).getPrice();
+			}
+		}
+		for (int i = 0; i < beveregeList.size(); i++) {
+			if (result1.equals(beveregeList.get(i).getMenu())) {
+				beveregePrice1 = beveregeList.get(i).getPrice();
+			}
+		}
+		for(int i=0; i<odList.size(); i++)
+		{
+			if(Price.equals(odList.get(i).getDetailprice()))
+			{
+				odList.get(i).
+				setDetailprice(beveregePrice+beveregePrice1);
+				System.out.println
+				("총 금액은 "+odList.get(i).getDetailprice()+" 원 입니다");
+			}
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
