@@ -3,11 +3,15 @@ package kioskProject;
 public class DetailDTO {
 	Long id;
 	String order ;
+	String orderside ;
 	Long price;
-	public DetailDTO(Long id, String order, Long price) {
+	
+	public DetailDTO() {}
+	public DetailDTO(Long id, String order, String orderside, Long price) {
 		super();
 		this.id = id;
 		this.order = order;
+		this.orderside = orderside;
 		this.price = price;
 	}
 	public Long getId() {
@@ -22,6 +26,12 @@ public class DetailDTO {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+	public String getOrderside() {
+		return orderside;
+	}
+	public void setOrderside(String orderside) {
+		this.orderside = orderside;
+	}
 	public Long getPrice() {
 		return price;
 	}
@@ -30,12 +40,9 @@ public class DetailDTO {
 	}
 	@Override
 	public String toString() {
-		return "DetailDTO [id=" + id + ", order=" + order + ", price=" + price + "]";
+		return "DetailDTO [id=" + id + ", order=" + order + ", orderside=" + orderside + ", price=" + price + "]";
 	}
-	public void setOrder(BeveregeDTO result) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	
 }

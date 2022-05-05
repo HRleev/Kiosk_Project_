@@ -38,6 +38,11 @@ public class BeveregeDTO {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "BeveregeDTO [id=" + id + ", menu=" + menu + ", price=" + price + "]";
+	}
+
 	
 }
 
