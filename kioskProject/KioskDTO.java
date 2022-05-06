@@ -1,20 +1,20 @@
 package kioskProject;
 
 public class KioskDTO {
-	Long id;
+
 	String mobile;
-	String coupon;
-	public KioskDTO(Long id, String mobile, String coupon) {
+	String beverege;
+	String shot;
+	Long price;
+	int coupon;
+	public KioskDTO() {}
+	public KioskDTO(String mobile, String beverege, String shot, Long price, int coupon) {
 		super();
-		this.id = id;
 		this.mobile = mobile;
+		this.beverege = beverege;
+		this.shot = shot;
+		this.price = price;
 		this.coupon = coupon;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getMobile() {
 		return mobile;
@@ -22,15 +22,34 @@ public class KioskDTO {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public String getCoupon() {
+	public String getBeverege() {
+		return beverege;
+	}
+	public void setBeverege(String beverege) {
+		this.beverege = beverege;
+	}
+	public String getShot() {
+		return shot;
+	}
+	public void setShot(String shot) {
+		this.shot = shot;
+	}
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+	public int getCoupon() {
 		return coupon;
 	}
-	public void setCoupon(String coupon) {
+	public void setCoupon(int coupon) {
 		this.coupon = coupon;
 	}
 	@Override
 	public String toString() {
-		return "KioskDTO [id=" + id + ", mobile=" + mobile + ", coupon=" + coupon + "]";
+		return "KioskDTO [mobile=" + mobile + ", beverege=" + beverege + ", shot=" + shot + ", price=" + price
+				+ ", coupon=" + coupon + "]";
 	}
 	
 	

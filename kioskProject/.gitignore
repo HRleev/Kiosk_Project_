@@ -4,3 +4,5 @@
 /KioskMain.class
 /KioskRepository.class
 /KioskService.class
+/Order.class
+/OrderDetailDTO.class

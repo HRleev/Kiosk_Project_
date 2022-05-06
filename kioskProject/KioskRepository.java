@@ -5,13 +5,18 @@ import java.util.*;
 public class KioskRepository {
 	Scanner scan = new Scanner(System.in);
 	List<BeveregeDTO> beveregeList = new ArrayList<>();
-	Long selectNumber = 0L;
 	List<DetailDTO> odList = new ArrayList<>();
-	String result = null;
-	String result1 = null;
+	List<KioskDTO> saveDetailList = new ArrayList<>();
+	Long selectNumber = 0L;
 	Long beveregePrice = 0L;
 	Long beveregePrice1 = 0L;
-	Long Price =0L;
+	Long Price = 0L;
+	Long totalPrice = 0L;
+	String beverege = null;
+	String mobile = null;
+	String shot = "샷추가없음";
+	KioskDTO saveDetail = null;
+	int coupon = 1;
 	static Long id = 0L;
 
 	public void save() {
@@ -29,6 +34,8 @@ public class KioskRepository {
 		beveregeList.add(shot1);
 		BeveregeDTO shot2 = new BeveregeDTO(7L, "2샷추가", 1000L);
 		beveregeList.add(shot2);
+		BeveregeDTO shot3 = new BeveregeDTO(8L, "샷추가 없음", 0L);
+		beveregeList.add(shot2);
 
 	}
 
@@ -42,38 +49,53 @@ public class KioskRepository {
 		if (selectNumber == 1L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result + result1 + "을 선택 했습니다.");
-			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
+			coupon();
+			System.out.println(beverege + shot + "를 선택 했습니다.");
+			DetailDTO detailList = new DetailDTO(beverege, shot, 0L);
 			odList.add(detailList);
 			totalPrice();
+			KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, coupon);
+			saveDetailList.add(orderDetail);
 		} else if (selectNumber == 2L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result + result1 + "을 선택 했습니다.");
-			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
+			coupon();
+			System.out.println(beverege + shot + "를 선택 했습니다.");
+			DetailDTO detailList = new DetailDTO(beverege, shot, 0L);
 			odList.add(detailList);
 			totalPrice();
+			KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, coupon);
+			saveDetailList.add(orderDetail);
 		} else if (selectNumber == 3L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result + result1 + "을 선택 했습니다.");
-			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
+			coupon();
+			System.out.println(beverege + shot + "를 선택 했습니다.");
+			DetailDTO detailList = new DetailDTO(beverege, shot, 0L);
 			odList.add(detailList);
 			totalPrice();
+			KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, coupon);
+			saveDetailList.add(orderDetail);
+
 		} else if (selectNumber == 4L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result + result1 + "을 선택 했습니다.");
-			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
+			coupon();
+			System.out.println(beverege + shot + "를 선택 했습니다.");
+			DetailDTO detailList = new DetailDTO(beverege, shot, 0L);
 			odList.add(detailList);
 			totalPrice();
+			KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, coupon);
+			saveDetailList.add(orderDetail);
 		} else if (selectNumber == 5L) {
 			selectBeverege();
 			sideMenu();
-			System.out.println(result + result1 + "을 선택 했습니다.");
-			DetailDTO detailList = new DetailDTO(++id, result, result1, 0L);
+			coupon();
+			DetailDTO detailList = new DetailDTO(beverege, shot, 0L);
 			odList.add(detailList);
 			totalPrice();
+			KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, coupon);
+			saveDetailList.add(orderDetail);
 		}
 
 	}
@@ -82,9 +104,9 @@ public class KioskRepository {
 		save();
 		for (int i = 0; i < beveregeList.size(); i++)
 			if (selectNumber.equals(beveregeList.get(i).getId())) {
-				result = beveregeList.get(i).getMenu();
-				System.out.println(result + "를 선택 했습니다");
+				beverege = beveregeList.get(i).getMenu();
 			}
+		System.out.println(beverege + "를 선택 했습니다");
 	}
 
 	public void sideMenu() {
@@ -97,59 +119,84 @@ public class KioskRepository {
 		if (selectNumber == 6L) {
 			for (int j = 0; j < beveregeList.size(); j++) {
 				if (selectNumber.equals(beveregeList.get(j).getId())) {
-					result1 = beveregeList.get(j).getMenu();
-					System.out.println(result1 + "샷 추가를 선택 했습니다");
+					shot = beveregeList.get(j).getMenu();
 				}
 			}
+			System.out.println(shot + "를 선택 했습니다");
 		} else if (selectNumber == 7L) {
 			for (int j = 0; j < beveregeList.size(); j++) {
 				if (selectNumber.equals(beveregeList.get(j).getId())) {
-					result1 = beveregeList.get(j).getMenu();
-					System.out.println(result1 + "샷 추가를 선택 했습니다");
+					shot = beveregeList.get(j).getMenu();
 				}
 			}
+			System.out.println(shot + "를 선택 했습니다");
 		} else if (selectNumber == 8L) {
+			for (int j = 0; j < beveregeList.size(); j++) {
+				if (selectNumber.equals(beveregeList.get(j).getId())) {
+					shot = beveregeList.get(j).getMenu();
+				}
+			}
 			System.out.println("샷추가 없음");
 		}
 	}
 
 	public void totalPrice() {
 		for (int i = 0; i < beveregeList.size(); i++) {
-			if (result.equals(beveregeList.get(i).getMenu())) {
+			if (beverege.equals(beveregeList.get(i).getMenu())) {
 				beveregePrice = beveregeList.get(i).getPrice();
 			}
 		}
 		for (int i = 0; i < beveregeList.size(); i++) {
-			if (result1.equals(beveregeList.get(i).getMenu())) {
+			if (shot.equals(beveregeList.get(i).getMenu())) {
 				beveregePrice1 = beveregeList.get(i).getPrice();
 			}
 		}
-		for(int i=0; i<odList.size(); i++)
-		{
-			if(Price.equals(odList.get(i).getDetailprice()))
-			{
-				odList.get(i).
-				setDetailprice(beveregePrice+beveregePrice1);
-				System.out.println
-				("총 금액은 "+odList.get(i).getDetailprice()+" 원 입니다");
+		for (int i = 0; i < odList.size(); i++) {
+			if (Price.equals(odList.get(i).getDetailprice())) {
+				odList.get(i).setDetailprice(beveregePrice + beveregePrice1);
+				totalPrice = odList.get(i).getDetailprice();
+				System.out.println("총 금액은 " + totalPrice + " 원 입니다");
 			}
 
 		}
 	}
+
+	public void coupon() {
+		System.out.println("적립하시겠습니까");
+		System.out.println("-----------------");
+		System.out.println("1.예 | 2.아니오 ");
+		System.out.println("-----------------");
+		System.out.print("선택>");
+		selectNumber = scan.nextLong();
+
+		if (selectNumber == 1L) {
+			System.out.println("적립 할 번호를 입력해주세요");
+			mobile = scan.next();
+			for (int i = 0; i < saveDetailList.size(); i++) {
+				if (mobile.equals(saveDetailList.get(i).getMobile())) {
+
+					coupon = saveDetailList.get(i).getCoupon();
+					saveDetailList.get(i).setCoupon(++coupon);
+
+				} else if (selectNumber == 2) {
+
+				}
+			}
+			System.out.println("적립된 쿠폰은 " + coupon + "개 입니다");
+		}
+	}
+
+	public KioskDTO orderDetail(String mobile) {
+		int a = 0;
+		for (int i = 0; i < saveDetailList.size(); i++) {
+			if (mobile.equals(saveDetailList.get(i).getMobile())) {
+				a = i;
+
+			} else {
+				System.out.println("전화번호를 확인해주세요");
+			}
+		}
+		return saveDetailList.get(a);
+
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

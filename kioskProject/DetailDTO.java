@@ -1,27 +1,17 @@
 package kioskProject;
 
 public class DetailDTO {
-	Long id;
 	String order ;
 	String orderside ;
 	Long detailprice;
 	
 	public DetailDTO() {}
 
-	public DetailDTO(Long id, String order, String orderside, Long detailprice) {
+	public DetailDTO(String order, String orderside, Long detailprice) {
 		super();
-		this.id = id;
 		this.order = order;
 		this.orderside = orderside;
 		this.detailprice = detailprice;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getOrder() {
@@ -50,9 +40,10 @@ public class DetailDTO {
 
 	@Override
 	public String toString() {
-		return "DetailDTO [id=" + id + ", order=" + order + ", orderside=" + orderside + ", detailprice=" + detailprice
-				+ "]";
+		return "DetailDTO [order=" + order + ", orderside=" + orderside + ", detailprice=" + detailprice + "]";
 	}
+
+	
 	
 	
 }
