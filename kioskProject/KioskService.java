@@ -5,8 +5,9 @@ import java.util.*;
 public class KioskService {
 	Scanner scan = new Scanner(System.in);
 	KioskRepository kr = new KioskRepository();
+	KioskMain km =new KioskMain();
 	Long selectNumber = 0L;
-
+	boolean run =true;
 	public void order() {
 		System.out.println("주문하실 음료를 선택 해 주세요");
 		System.out.println("----------------------------------------------------------------");
@@ -40,17 +41,16 @@ public class KioskService {
 		System.out.println("-----------------");
 		System.out.print("선택>");
 		selectNumber = scan.nextLong();
-		while(true) {
+		 {
 		if (selectNumber == 1L) {
-			System.out.println("적립 할 번호를 입력해주세요");
-			break;
+			System.out.println("적립 할 번호를 입력해주세요");		
 		}else{
 			System.out.println("주문해주셔서 감사합니다");
-			order();
 			}
-		}
+		 }
 	}	
 	public void select() {
+		
 		kr.save();
 		String beverege = kr.selectBeverege(selectNumber);
 		sideMenu();
@@ -64,6 +64,7 @@ public class KioskService {
 		KioskDTO orderDetail = new KioskDTO(mobile, beverege, shot, totalPrice, 0);
 		kr.saveDetail(orderDetail);
 		kr.coupon(mobile);
+		
 	}
 	public void orderDetail() {
 		String mobile = null;

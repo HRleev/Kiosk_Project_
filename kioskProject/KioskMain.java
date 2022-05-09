@@ -7,7 +7,8 @@ public class KioskMain {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		KioskService ks = new KioskService();
-
+		
+		
 		boolean run = true;
 		int selectNumber = 0;
 		while (run) {
@@ -23,7 +24,10 @@ public class KioskMain {
 				ks.orderDetail();
 			} else if (selectNumber == 3) {
 				run = false;
-			}
 		}
+		
+			
+			
 	}
+}
 }

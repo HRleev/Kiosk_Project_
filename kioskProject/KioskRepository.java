@@ -9,7 +9,7 @@ public class KioskRepository {
 	List<KioskDTO> saveDetailList = new ArrayList<>();
 	Long selectNumber = 0L;
 	static Long id = 0L;
-	
+
 	public void save() {
 		BeveregeDTO americano = new BeveregeDTO(1L, "아이스아메리카노", 2000L);
 		beveregeList.add(americano);
@@ -28,9 +28,11 @@ public class KioskRepository {
 		BeveregeDTO shot3 = new BeveregeDTO(3L, "샷추가 없음", 0L);
 		beveregeList1.add(shot3);
 	}
-	public void saveDetail(KioskDTO orderDetail){
+
+	public void saveDetail(KioskDTO orderDetail) {
 		saveDetailList.add(orderDetail);
-	}	
+	}
+
 	public String selectBeverege(Long selectNumber) {
 		String beverege = null;
 		for (int i = 0; i < beveregeList.size(); i++)
@@ -40,19 +42,22 @@ public class KioskRepository {
 		System.out.println(beverege + "를 선택 했습니다");
 		return beverege;
 	}
+
 	public String sideMenu(Long selectNumber) {
-		String shot= null;
+		String shot = null;
 		for (int i = 0; i < beveregeList1.size(); i++) {
 			if (selectNumber.equals(beveregeList1.get(i).getId())) {
 				shot = beveregeList1.get(i).getMenu();
 			}
-		}	System.out.println(shot + "을 선택 했습니다");
+		}
+		System.out.println(shot + "을 선택 했습니다");
 		return shot;
 	}
+
 	public Long totalPrice(String beverege, String shot) {
-		Long beveregePrice =0L;
-		Long beveregePrice1 =0L;
-		Long totalPrice=0L;
+		Long beveregePrice = 0L;
+		Long beveregePrice1 = 0L;
+		Long totalPrice = 0L;
 		for (int i = 0; i < beveregeList.size(); i++) {
 			if (beverege.equals(beveregeList.get(i).getMenu())) {
 				beveregePrice = beveregeList.get(i).getPrice();
@@ -66,24 +71,27 @@ public class KioskRepository {
 		totalPrice = beveregePrice + beveregePrice1;
 		return totalPrice;
 	}
-	
+
 	public void coupon(String mobile) {
-		int a=0;
+		int a = 0;
 		for (int i = 0; i < saveDetailList.size(); i++) {
 			if (mobile.equals(saveDetailList.get(i).getMobile())) {
 				int coupon = saveDetailList.get(i).getCoupon();
 				saveDetailList.get(i).setCoupon(++coupon);
 			}
-		}System.out.println
-		("적립된 쿠폰은"+ saveDetailList.get(a).getCoupon()+ "개 입니다");
+		}
+		System.out.println("적립된 쿠폰은" + saveDetailList.get(a).getCoupon() + "개 입니다");
 	}
-	public void detail (String mobile) {
+
+	public void detail(String mobile) {
 
 		for (int i = 0; i < saveDetailList.size(); i++) {
-			if (mobile.equals(saveDetailList.get(i).getMobile())) {
-				System.out.println(saveDetailList.get(i));
-			} else {
-				System.out.println("번호를 확인 해주세요");
+			{
+				if (mobile.equals(saveDetailList.get(i).getMobile())) {
+					System.out.println(saveDetailList.get(i));
+				} else {
+					System.out.println("번호를 확인 해주세요");
+				}
 			}
 		}
 	}
